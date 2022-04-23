@@ -1,5 +1,5 @@
 1. install react bootstrap
-    npm install bootstap
+2. npm install bootstap
 
 
 # Getting Started with Create React App
