@@ -1,12 +1,25 @@
-import React,{Component, Fragment} from "react";
-import YoutubeComponent from "../../component/Youtube/YoutubeComponent";
-import Product from "../Product/Product";
+import React, { Component, Fragment } from "react";
+import LifecycleComponent from "../LifeCycle/LifecycleComponent";
+// import YoutubeComponent from "../../component/Youtube/YoutubeComponent";
+// import Product from "../Product/Product";
 
-class Home extends Component{
-    render(){
-        return(
-            <Fragment>
-            {/* <div className="row">
+class Home extends Component {
+  state = {
+    showComponent: true,
+  };
+
+  componentDidMount() {
+    // setTimeout(() => {
+    //   this.setState({
+    //     showComponent: false,
+    //   });
+    // }, 5000);
+  }
+
+  render() {
+    return (
+      <Fragment>
+        {/* <div className="row">
                 <p><b>Youtube Component</b> /component/Youtube/YoutubeComponent</p>
                 <hr />
                 <YoutubeComponent title="Pol Espargaro" desc="No 44"/>
@@ -15,12 +28,13 @@ class Home extends Component{
                 <YoutubeComponent />
             </div> */}
 
-            <p><b>Product</b></p>
+        {/* <p><b>Product</b></p>
             <hr />
-            <Product/>
-            </Fragment>
-        )
-    }
+            <Product/> */}
+        {this.state.showComponent ? <LifecycleComponent /> : null}
+      </Fragment>
+    );
+  }
 }
 
 export default Home;
