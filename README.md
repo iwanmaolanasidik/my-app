@@ -1,4 +1,5 @@
 1. install react bootstrap (npm install bootstap)
+2. install react icon (npm install react-icons --save)
 
 
 # Getting Started with Create React App
