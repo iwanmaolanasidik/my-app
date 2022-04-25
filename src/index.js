@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
-import Home from './container/Home/Home';
+import BlogPost from './container/BlogPost/BlogPost';
+// import Home from './container/Home/Home';
 // import App from './App';
 // import Hello from "./component/Hello";
 // import StatefullComponent from "./container/StatefullComponent";
@@ -13,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <Home/>
+    <BlogPost/>
   </React.StrictMode>
 );
 
