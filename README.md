@@ -1,5 +1,6 @@
 1. install react bootstrap (npm install bootstap)
 2. install react icon (npm install react-icons --save)
+3. API Server -> repo : laravel9server
 
 
 # Getting Started with Create React App
