@@ -9,6 +9,7 @@ class BlogPost extends Component {
       name: "",
       address: "",
     },
+    isUpdate: false,
   };
 
   getPostApi = () => {
@@ -20,11 +21,53 @@ class BlogPost extends Component {
     });
   };
 
+  postDataToAPI = () => {
+    axios
+      .post(`http://127.0.0.1:8000/api/student`, this.state.formBlogPost)
+      .then((res) => {
+        this.setState({
+          formBlogPost: {
+            name: "",
+            address: "",
+          },
+        });
+        this.getPostApi();
+        console.log(res);
+      });
+  };
+
   handleRemove = (data) => {
     axios.delete(`http://127.0.0.1:8000/api/student/${data}`).then((res) => {
-      // console.log(res);
+      console.log(res);
       this.getPostApi();
     });
+  };
+
+  handleUpdate = (data) => {
+    console.log(data);
+    this.setState({
+      formBlogPost: data,
+      isUpdate: true,
+    });
+  };
+
+  putDataToAPI = () => {
+    axios
+      .put(
+        `http://127.0.0.1:8000/api/student/${this.state.formBlogPost.student_id}`,
+        this.state.formBlogPost
+      )
+      .then((res) => {
+        console.log(res);
+        this.getPostApi();
+        this.setState({
+          isUpdate: false,
+          formBlogPost: {
+            name: "",
+            address: "",
+          },
+        });
+      });
   };
 
   handleFormChange = (event) => {
@@ -35,9 +78,17 @@ class BlogPost extends Component {
         formBlogPost: formBlogPostNew,
       },
       () => {
-        console.log(this.state.formBlogPost);
+        // console.log(this.state.formBlogPost);
       }
     );
+  };
+
+  handleSubmit = () => {
+    if (this.state.isUpdate) {
+      this.putDataToAPI();
+    } else {
+      this.postDataToAPI();
+    }
   };
 
   componentDidMount() {
@@ -66,6 +117,7 @@ class BlogPost extends Component {
               className="form-control"
               name="name"
               onChange={this.handleFormChange}
+              value={this.state.formBlogPost.name}
             />
           </div>
           <div className="form-group">
@@ -77,10 +129,13 @@ class BlogPost extends Component {
               rows="5"
               className="form-control"
               onChange={this.handleFormChange}
+              value={this.state.formBlogPost.address}
             ></textarea>
           </div>
           <div className="form-group mt-2 mb-5 text-end">
-            <div className="btn btn-primary">Simpan</div>
+            <button className="btn btn-primary" onClick={this.handleSubmit}>
+              Simpan
+            </button>
           </div>
 
           {this.state.post.map((post) => {
@@ -89,6 +144,7 @@ class BlogPost extends Component {
                 key={post.student_id}
                 data={post}
                 remove={this.handleRemove}
+                update={this.handleUpdate}
               />
             );
           })}

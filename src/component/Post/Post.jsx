@@ -13,12 +13,18 @@ const Post = (props) => {
           </p>
           <p className="card-text">{props.data.address}</p>
         </div>
-        <div className="card-footer">
+        <div className="card-footer mx-auto">
           <button
             className="btn btn-sm btn-danger"
             onClick={() => props.remove(props.data.student_id)}
           >
             Delete
+          </button>
+          <button
+            className="btn btn-sm btn-success"
+            onClick={() => props.update(props.data)}
+          >
+            Update
           </button>
         </div>
       </div>
